@@ -13,16 +13,16 @@
         /** Randomly generates computer's hand */
         function computerPlay() {
             const randVal = Math.floor(Math.random() * 10);
-            var play
+            var hand;
             
             if(randVal <= 3) {
-                play = 'rock';
+                hand = 'rock';
             } else if (randVal > 3 && randVal <= 6) {
-                play = 'paper';
+                hand = 'paper';
             } else {
-                play = 'scissors';
+                hand = 'scissors';
             }             
-             return play;
+             return hand;
                  
              }           
 
@@ -31,19 +31,19 @@
             playerSelection = playerSelection.toLowerCase();
 
             if(playerSelection === computerSelection) {
-                return 'It\'s a tie!!!' 
+                return 'It\'s a tie!!!'; 
             } else if(playerSelection === 'rock' && computerSelection === 'scissors') {
                 playerScore += 1;
-                return 'You Win, Rock beats Scissors!!!'
+                return 'You Win, Rock beats Scissors!!!';
             } else if(playerSelection === 'paper' && computerSelection === 'rock') {
                 playerScore += 1;
-                return 'You Win, Paper beats Rock!!!'
+                return 'You Win, Paper beats Rock!!!';
             } else if(playerSelection === 'scissors' && computerSelection === 'paper') {
                 playerScore += 1;
-                return 'You Win, Scissors beats Rock!!!'
+                return 'You Win, Scissors beats Rock!!!';
             } else {
                 computerScore += 1;
-                return 'OH NOOO!!! ' +  computerSelection + ' beats ' + playerSelection + ' you lose!!!'
+                return 'OH NOOO!!! ' +  computerSelection + ' beats ' + playerSelection + ' you lose!!!';
             }
             
 
@@ -52,44 +52,43 @@
         /** Plays five rounds of Rock Paper Scissors */
         function game() {
 
-            var computerSelection
-            var playerSelection 
+            var computerSelection;
+            var playerSelection;
 
             for (round = 0; round < 5; round++) {
-                playerSelection = prompt('Your weapon of choice?')
-                computerSelection = computerPlay()   
-                console.log(playRound(playerSelection, computerSelection))
+                playerSelection = prompt('Your weapon of choice?');
+                computerSelection = computerPlay() ;  
+                console.log(playRound(playerSelection, computerSelection));
          }
-         console.log(showWinner())    
+         console.log(showWinner());
         }     
 
         /** Returns player's score */
         function getPlayerScore() {
-            return playerScore
+            return playerScore;
         }
 
 
         /** Returns computer's score */
         function getComputerScore() {
-            return computerScore
+            return computerScore;
         }
 
         /** Decides winner based on highest score */
         function showWinner() {
             if(playerScore > computerScore) {
-                return 'Congratulations you win, your score was: ' + getPlayerScore() + ' Computer\'s score was: ' + getComputerScore()
+                return 'Congratulations you win, your score was: ' + getPlayerScore() +
+                        ' Computer\'s score was: ' + getComputerScore();
             } else if(computerScore > playerScore) {
-                return ' You Lost try again: Computer\'s score: ' + getComputerScore() + ' Your score: ' + getPlayerScore() 
+                return ' You Lost try again: Computer\'s score: ' + getComputerScore() +
+                        ' Your score: ' + getPlayerScore() ;
             } else {
-                return ' It\'s a tie, play again!!!'
+                return ' It\'s a tie, play again!!!';
             }
         }
 
 
-        game();
-         
-         
-        
+        game();      
         
 
     </script>
