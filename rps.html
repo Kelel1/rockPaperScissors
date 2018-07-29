@@ -5,6 +5,7 @@
 </head>
 
 <body>
+    <div id="display"></div>
     <div id="containter">
         <button id="rock">Rock</button>
         <button id="paper">Paper</button>
@@ -13,12 +14,11 @@
     
     <script>
 
-        const buttons = document.querySelectorAll('button');
-        
+        const buttons = document.querySelectorAll('button');        
 
         const play = buttons.forEach((button) => {
 
-            button.addEventListener('click', (game) => {
+            button.addEventListener('click', (play) => {
                 console.log(playRound(button.id, computerPlay()));
             }); 
         });
@@ -44,7 +44,7 @@
              
          
         /** Plays a single round of the game */
-        function playRound(playerSelection, computerSelection) {
+        function playRound(playerSelection, computerSelection) {             
 
             if(playerSelection === computerSelection) {
                 return 'It\'s a tie!!!'; 
@@ -62,18 +62,7 @@
                 return 'OH NOOO!!! ' +  computerSelection + ' beats ' + playerSelection + ' you lose!!!';
             }            
 
-        }
-
-        /** Plays five rounds of Rock Paper Scissors */
-        function game() {
-
-            let computerSelection;
-            let playerSelection = play;
-
-            computerSelection = computerPlay() ;               
-         
-         console.log(showWinner());
-        }     
+        }        
 
         /** Returns player's score */
         function getPlayerScore() {
