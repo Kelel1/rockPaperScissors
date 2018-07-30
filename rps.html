@@ -18,20 +18,33 @@
         var computerScore = 0;
 
         const display = document.querySelector('#display');
+        const showPlayerScore = document.createElement('div');
+        const showComputerScore = document.createElement('div');
         const result = document.createElement('div');
-        result.classList.add('result');
-        
+        const winner = document.createElement('div');
+        winner.textContent = showWinner();        
+        result.classList.add('result','showPlayerScore','showComputerScore','winner');       
 
-        const buttons = document.querySelectorAll('button');        
+        const buttons = document.querySelectorAll('button'); 
 
+        /** Add event listeners to buttons */
         const play = buttons.forEach((button) => {
 
             button.addEventListener('click', (play) => {
                 result.textContent = playRound(button.id, computerPlay());
+                showPlayerScore.textContent = 'Player Score: ' + playerScore;
+                showComputerScore.textContent = 'Computer Score: ' + computerScore;
+                winner.textContent = showWinner();                    
+                display.appendChild(winner);                
+                display.appendChild(showPlayerScore);
+                display.appendChild(showComputerScore);
                 display.appendChild(result);
-                         
+
+                if(playerScore == 5 || computerScore == 5) {
+                    scoreReset();
+                }                       
             }); 
-        });        
+        });                    
 
         /** Randomly generates computer's hand */
         function computerPlay() {
@@ -47,7 +60,7 @@
             }             
              return hand;
                  
-             }            
+            }            
          
         /** Plays a single round of the game */
         function playRound(playerSelection, computerSelection) {             
@@ -71,7 +84,13 @@
                 return 'OH NOOO!!! ' +  computerSelection + ' beats ' + playerSelection + ' you lose!!!';
             }            
 
-        }        
+        }    
+        
+        /** Resets scores to begin a new game(Game ends after 5 pts.) */
+        function scoreReset() {
+            playerScore = 0;
+            computerScore = 0;
+        }    
 
         /** Returns player's score */
         function getPlayerScore() {
@@ -85,15 +104,16 @@
 
         /** Decides winner based on highest score */
         function showWinner() {
-            if(playerScore > computerScore) {
+            if (playerScore == 5 && computerScore < playerScore) {                    
                 return 'Congratulations you win, your score was: ' + getPlayerScore() +
-                        ' Computer\'s score was: ' + getComputerScore();
-            } else if(computerScore > playerScore) {
+                ' Computer\'s score was: ' + getComputerScore();                
+                                        
+            } else if (computerScore == 5 && playerScore < computerScore) {
                 return ' You Lost try again: Computer\'s score: ' + getComputerScore() +
-                        ' Your score: ' + getPlayerScore() ;
-            } else {
+                    ' Your score: ' + getPlayerScore() ;
+            } else if (computerScore == 5 && playerScore == 5) {
                 return ' It\'s a tie, play again!!!';
-            }
+            }                        
         }        
 
     </script>
