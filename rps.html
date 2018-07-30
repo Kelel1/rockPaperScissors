@@ -14,17 +14,24 @@
     
     <script>
 
+        var playerScore = 0;
+        var computerScore = 0;
+
+        const display = document.querySelector('#display');
+        const result = document.createElement('div');
+        result.classList.add('result');
+        
+
         const buttons = document.querySelectorAll('button');        
 
         const play = buttons.forEach((button) => {
 
             button.addEventListener('click', (play) => {
-                console.log(playRound(button.id, computerPlay()));
+                result.textContent = playRound(button.id, computerPlay());
+                display.appendChild(result);
+                         
             }); 
-        });
-
-        var playerScore = 0;
-        var computerScore = 0;
+        });        
 
         /** Randomly generates computer's hand */
         function computerPlay() {
@@ -40,14 +47,16 @@
             }             
              return hand;
                  
-             } 
-             
+             }            
          
         /** Plays a single round of the game */
         function playRound(playerSelection, computerSelection) {             
+            const div = document.querySelector('#display');
+            var result = document.createElement('div');
 
             if(playerSelection === computerSelection) {
-                return 'It\'s a tie!!!'; 
+                return 'It\'s a tie!!!';               
+                
             } else if(playerSelection === 'rock' && computerSelection === 'scissors') {
                 playerScore += 1;
                 return 'You Win, Rock beats Scissors!!!';
@@ -88,5 +97,10 @@
         }        
 
     </script>
+    <style>
+        div {
+            padding: 10px 5px 10px 5px;            
+        }
+    </style>
 </body>
 </html>
